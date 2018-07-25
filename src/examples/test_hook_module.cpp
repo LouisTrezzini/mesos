@@ -87,12 +87,12 @@ private:
 class TestHook : public Hook
 {
 public:
-  Result<Labels> masterLaunchTaskLabelDecorator(
+  Result<TaskInfo> masterPreLaunchTaskHook(
       const TaskInfo& taskInfo,
       const FrameworkInfo& frameworkInfo,
       const SlaveInfo& slaveInfo) override
   {
-    LOG(INFO) << "Executing 'masterLaunchTaskLabelDecorator' hook";
+    LOG(INFO) << "Executing 'masterPreLaunchTaskHook' hook";
 
     Labels labels;
 
@@ -108,7 +108,11 @@ public:
       }
     }
 
-    return labels;
+    TaskInfo taskInfo_ = taskInfo;
+
+    taskInfo_.mutable_labels()->CopyFrom(labels);
+
+    return taskInfo_;
   }
 
   Try<Nothing> masterSlaveLostHook(const SlaveInfo& slaveInfo) override

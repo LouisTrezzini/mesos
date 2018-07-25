@@ -40,10 +40,11 @@ public:
 
   static bool hooksAvailable();
 
-  static Labels masterLaunchTaskLabelDecorator(
-      const TaskInfo& taskInfo,
-      const FrameworkInfo& frameworkInfo,
-      const SlaveInfo& slaveInfo);
+  static TaskInfo masterPreLaunchTaskHook(
+          const TaskInfo &taskInfo,
+          const FrameworkInfo &frameworkInfo,
+          const SlaveInfo &slaveInfo
+  );
 
   static void masterSlaveLostHook(const SlaveInfo& slaveInfo);
 

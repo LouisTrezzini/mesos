@@ -719,6 +719,9 @@ Try<Docker::RunOptions> Docker::RunOptions::create(
         default: return Error("Unsupported volume mode");
       }
     } else if (volume.has_source()) {
+
+      // FIXME
+
       if (volume.source().type() != Volume::Source::DOCKER_VOLUME) {
         VLOG(1) << "Ignored volume type '" << volume.source().type()
                 << "' for container '" << name << "' as only "

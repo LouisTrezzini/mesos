@@ -41,11 +41,7 @@ class Hook
 public:
   virtual ~Hook() {}
 
-  // This label decorator hook is called from within master during
-  // the launchTask routine. A module implementing the hook creates
-  // and returns a set of labels. These labels overwrite the existing
-  // labels on the task info.
-  virtual Result<Labels> masterLaunchTaskLabelDecorator(
+  virtual Result<TaskInfo> masterPreLaunchTaskHook(
       const TaskInfo& taskInfo,
       const FrameworkInfo& frameworkInfo,
       const SlaveInfo& slaveInfo)
